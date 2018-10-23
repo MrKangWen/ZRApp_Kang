@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,11 +43,15 @@ public class SettingsActivity extends BaseActivity {
 
     @BindView(R.id.activity_settings_btn_link_taoword)
     ImageView mBtnLinkTao;
+
+    @BindView(R.id.settingsIvDiyText)
+    ImageView mSettingsIvDiyText;
     @BindView(R.id.activity_settings_version_info_tv)
     TextView mVersionInfo;
 
     private String mLinkTao;
     private LoadingDialog mLoadingDialog;
+    boolean mIsDiyText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,45 @@ public class SettingsActivity extends BaseActivity {
         String versionName = ApplicationUtils.getVersionName();
         mVersionInfo.setText(versionName);
 
+        mIsDiyText = SPreferenceUtil.getBoolean(SettingsActivity.this, ZRDConstants.SPreferenceKey.SP_DIY_TEXT, false);
+        if (mIsDiyText) {
+            mSettingsIvDiyText.setImageResource(R.drawable.icon_toggle_on);
+        }
+
+        mSettingsIvDiyText.setOnClickListener(v -> {
+            mIsDiyText = SPreferenceUtil.getBoolean(SettingsActivity.this, ZRDConstants.SPreferenceKey.SP_DIY_TEXT, false);
+            if (mIsDiyText) {
+                SPreferenceUtil.put(SettingsActivity.this, ZRDConstants.SPreferenceKey.SP_DIY_TEXT, false);
+                mSettingsIvDiyText.setImageResource(R.drawable.icon_toggle_off);
+
+            } else {
+                SPreferenceUtil.put(SettingsActivity.this, ZRDConstants.SPreferenceKey.SP_DIY_TEXT, true);
+                mSettingsIvDiyText.setImageResource(R.drawable.icon_toggle_on);
+            }
+
+        });
+
+
+        findViewById(R.id.settingsTvDiyText).setOnClickListener(v -> {
+            showDiyDialog();
+        });
+    }
+
+    AlertDialog mAlertDialog;
+
+    private void showDiyDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("自定义文案");
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_diy_text, null);
+
+        view.findViewById(R.id.diyTextBtnSubmit).setOnClickListener(v -> {
+            if (mAlertDialog != null) {
+                mAlertDialog.dismiss();
+            }
+        });
+        builder.setView(view);
+        mAlertDialog = builder.show();
 
     }
 
@@ -156,6 +200,8 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        if (mAlertDialog != null) {
+            mAlertDialog.dismiss();
+        }
     }
 }

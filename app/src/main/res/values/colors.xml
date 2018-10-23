@@ -17,4 +17,9 @@
     <color name="colorGray_F0F0F0">#F0F0F0</color>
     <color name="colorPink_ffebe8">#ffebe8</color>
     <color name="colorGreen_04be02">#04be02</color>
+
+    <color name="color_style_btn_selected">#3F51B5</color>
+    <color name="color_style_btn_normal">#303F9F</color>
+    <color name="color_btn_enable_false">#80F5F5F5</color>
+
 </resources>

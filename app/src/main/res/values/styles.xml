@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 按钮 -->
+    <declare-styleable name="button_selector">
+        <attr name="selectedColor" format="color" />
+        <attr name="pressedColor" format="color" />
+        <attr name="enabledColor" format="color" />
+        <attr name="radiu" format="float" />
+    </declare-styleable>
 </resources>

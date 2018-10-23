@@ -28,6 +28,7 @@ public class ZRDConstants {
         public static final String SP_TAO_SESSION = "tao_session";
         public static final String SP_LINK_TAO = "link_tao";
         public static final String SP_PUSH_ALIAS = "Push_Alias";
+        public static final String SP_DIY_TEXT = "diy_text";
     }
 
     public static class EventCommand {

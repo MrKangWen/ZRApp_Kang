@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,7 +25,7 @@
                 android:id="@+id/activity_settings_layout_title_left_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"/>
+                android:src="@drawable/ic_back" />
         </RelativeLayout>
 
         <TextView
@@ -37,7 +36,7 @@
             android:gravity="center"
             android:text="设置"
             android:textColor="@color/colorBlack_333333"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="48dp"
@@ -49,14 +48,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"/>
+                android:src="@drawable/ic_back" />
         </RelativeLayout>
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorGray_F5F5F5"/>
+        android:background="@color/colorGray_F5F5F5" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,13 +75,43 @@
             android:paddingTop="10dp"
             android:text="淘口令链接版"
             android:textColor="@color/colorBlack_333333"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/activity_settings_btn_link_taoword"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/icon_toggle_off"/>
+            android:src="@drawable/icon_toggle_off" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/settingsTvDiyText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="自定义文案尾巴"
+            android:textColor="@color/colorBlack_333333"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/settingsIvDiyText"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/icon_toggle_off" />
     </LinearLayout>
 
     <LinearLayout
@@ -104,13 +133,13 @@
             android:paddingTop="10dp"
             android:text="版本信息"
             android:textColor="@color/colorBlack_333333"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/activity_settings_version_info_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_next"/>
+            android:src="@drawable/icon_next" />
     </LinearLayout>
 
     <TextView
@@ -126,5 +155,5 @@
         android:paddingTop="8dp"
         android:text="退出登录"
         android:textColor="@color/colorRed_FF2200"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 </LinearLayout>
