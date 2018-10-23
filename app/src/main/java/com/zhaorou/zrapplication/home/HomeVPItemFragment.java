@@ -16,7 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Base64;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +26,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tencent.mm.opensdk.modelmsg.WXImageObject;
-import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseFragment;
 import com.zhaorou.zrapplication.base.GlideApp;
@@ -40,11 +38,12 @@ import com.zhaorou.zrapplication.home.model.FriendPopDetailModel;
 import com.zhaorou.zrapplication.home.model.GoodsListModel;
 import com.zhaorou.zrapplication.home.presenter.HomeFragmentPresenter;
 import com.zhaorou.zrapplication.login.LoginActivity;
-import com.zhaorou.zrapplication.utils.AccessibilityUtils;
+
 import com.zhaorou.zrapplication.utils.AssistantService;
 import com.zhaorou.zrapplication.utils.DisplayUtil;
 import com.zhaorou.zrapplication.utils.FileUtils;
 import com.zhaorou.zrapplication.utils.SPreferenceUtil;
+import com.zhaorou.zrapplication.utils.ShareUtils;
 import com.zhaorou.zrapplication.widget.recyclerview.CustomItemDecoration;
 import com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView;
 
@@ -165,12 +164,11 @@ public class HomeVPItemFragment extends BaseFragment implements IHomeFragmentVie
         String content = entityBean.getContent();
 
 
-
-        if("WX_CIRCLE".equals(mShareType)){
+        if ("WX_CIRCLE".equals(mShareType)) {
             mTaoword = "\n" + goods_name + "\n" + "原价 " + price + "\n" + "券后 " +
                     price_after_coupons + "\n" +
                     "--------抢购方式--------" + "\n";
-        }else {
+        } else {
             mTaoword = "\n" + goods_name + "\n" + content + "\n" + "原价 " + price + "\n" + "券后 " +
                     price_after_coupons + "\n" +
                     "--------抢购方式--------" + "\n";
@@ -233,41 +231,7 @@ public class HomeVPItemFragment extends BaseFragment implements IHomeFragmentVie
             list.add(mGoodsBean.getPic());
         }
 
-        final List<File> fileList = new ArrayList<>();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (String imgUrl : list) {
-                    File file = FileUtils.saveImageToSdCard(getContext().getExternalCacheDir(), imgUrl);
-                    if (file != null) {
-                        fileList.add(file);
-                    }
-                }
-                Intent intent = new Intent();
-                ComponentName comp = null;
-                if (TextUtils.equals(mShareType, "WX")) {
-                    comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
-                }
-                if (TextUtils.equals(mShareType, "WX_CIRCLE")) {
-                    comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
-                    intent.putExtra("Kdescription", mTaoword);
-                }
-                intent.setComponent(comp);
-                intent.setAction(Intent.ACTION_SEND_MULTIPLE);
-                intent.setType("image/*");
-                ArrayList<Uri> imgUriList = new ArrayList<>();
-                if (isWeChat6_7_3()) {
-                    imgUriList.add(Uri.fromFile(fileList.get(0)));
-                } else {
-                    for (File file : fileList) {
-                        imgUriList.add(Uri.fromFile(file));
-                    }
-                }
-                intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imgUriList);
-                startActivity(intent);
-
-            }
-        }).start();
+        ShareUtils.shareMoments(getContext(), list, mShareType, mTaoword);
     }
 
     @Override
@@ -592,7 +556,7 @@ public class HomeVPItemFragment extends BaseFragment implements IHomeFragmentVie
         mPerfectWXCircleDialog = new PerfectWXCircleDialog(getContext(), this);
         mPerfectWXCircleDialog.show();
         mPerfectWXCircleDialog.setGoodsInfo(goodsBean.getGoods_id(), goodsBean.getQuan_guid_content(),
-                goodsBean.getIs_friendpop(), goodsBean.getGoods_name(), goodsBean.getPic(),mGoodsType);
+                goodsBean.getIs_friendpop(), goodsBean.getGoods_name(), goodsBean.getPic(), mGoodsType);
     }
 
     @Override

@@ -34,6 +34,7 @@ import com.zhaorou.zrapplication.network.retrofit.AbsZCallback;
 import com.zhaorou.zrapplication.utils.AssistantService;
 import com.zhaorou.zrapplication.utils.FileUtils;
 import com.zhaorou.zrapplication.utils.SPreferenceUtil;
+import com.zhaorou.zrapplication.utils.ShareUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -435,37 +436,7 @@ public class GoodsDetailActivity extends BaseActivity implements IHomeFragmentVi
             list.add(mGoodsBean.getPic());
         }
 
-        final List<File> fileList = new ArrayList<>();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (String imgUrl : list) {
-                    File file = FileUtils.saveImageToSdCard(getApplicationContext().getExternalCacheDir(), imgUrl);
-                    if (file != null) {
-                        fileList.add(file);
-                    }
-                }
-                Intent intent = new Intent();
-                ComponentName comp = null;
-                if (TextUtils.equals(mShareType, "WX")) {
-                    comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
-                }
-                if (TextUtils.equals(mShareType, "WX_CIRCLE")) {
-                    comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
-                    intent.putExtra("Kdescription", mTaoword);
-                }
-                intent.setComponent(comp);
-                intent.setAction(Intent.ACTION_SEND_MULTIPLE);
-                intent.setType("image/*");
-                ArrayList<Uri> imgUriList = new ArrayList<>();
-                for (File file : fileList) {
-                    imgUriList.add(Uri.fromFile(file));
-                }
-                intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imgUriList);
-                startActivity(intent);
-
-            }
-        }).start();
+        ShareUtils.shareMoments(getApplicationContext(), list, mShareType, mTaoword);
     }
 
 
