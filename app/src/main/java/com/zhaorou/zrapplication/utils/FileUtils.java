@@ -35,7 +35,8 @@ public class FileUtils {
                         .equals(android.os.Environment.MEDIA_MOUNTED);
                 //获取跟目录
                 if (sdCardExist) {
-                    fileDir = Environment.getExternalStorageDirectory();
+                    fileDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
                 }
 
             }

@@ -256,8 +256,12 @@ public class HomeVPItemFragment extends BaseFragment implements IHomeFragmentVie
                 intent.setAction(Intent.ACTION_SEND_MULTIPLE);
                 intent.setType("image/*");
                 ArrayList<Uri> imgUriList = new ArrayList<>();
-                for (File file : fileList) {
-                    imgUriList.add(Uri.fromFile(file));
+                if (isWeChat6_7_3()) {
+                    imgUriList.add(Uri.fromFile(fileList.get(0)));
+                } else {
+                    for (File file : fileList) {
+                        imgUriList.add(Uri.fromFile(file));
+                    }
                 }
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imgUriList);
                 startActivity(intent);
