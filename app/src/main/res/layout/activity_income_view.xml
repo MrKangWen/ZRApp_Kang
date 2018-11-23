@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".user.income.IncomeViewActivity">
+
+    <include layout="@layout/layout_title_base_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FF4E02">
+
+        <TextView
+            android:id="@+id/incomeTvText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="可提现金额"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/incomeTvText"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="6dp"
+            android:text="0.00"
+            android:textColor="@color/colorWhite" />
+
+        <com.zhaorou.zrapplication.widget.viewselector.TextViewSelector
+            android:id="@+id/incomeTvWithdrawal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/incomeTvText"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="3dp"
+            android:text="提现"
+            android:textColor="#FF4E02"
+            app:radiu="20"
+            app:selectedColor="@color/colorWhite" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/incomeLLAllOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/my_order_ic" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="所有订单"
+            android:textColor="@color/colorBlack_333333" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/icon_next" />
+    </LinearLayout>
+
+</LinearLayout>

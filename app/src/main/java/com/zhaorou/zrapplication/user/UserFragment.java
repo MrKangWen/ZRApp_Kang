@@ -20,6 +20,7 @@ import com.zhaorou.zrapplication.constants.ZRDConstants;
 import com.zhaorou.zrapplication.home.dialog.LoadingDialog;
 import com.zhaorou.zrapplication.login.LoginActivity;
 import com.zhaorou.zrapplication.settings.SettingsActivity;
+import com.zhaorou.zrapplication.user.income.IncomeViewActivity;
 import com.zhaorou.zrapplication.user.model.UserInfoModel;
 import com.zhaorou.zrapplication.user.model.UserMessageEvent;
 import com.zhaorou.zrapplication.user.msg.MsgActivity;
@@ -99,7 +100,7 @@ public class UserFragment extends Fragment implements IUserFragmentView {
         });
         mView.findViewById(R.id.userLLAllOrder).setOnClickListener(v -> {
 
-            startActivity(new Intent(getActivity(), AllOrderActivity.class));
+            startActivity(new Intent(getActivity(), IncomeViewActivity.class));
 
         });
 

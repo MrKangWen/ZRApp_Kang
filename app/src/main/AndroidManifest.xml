@@ -93,7 +93,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".user.order.AllOrderActivity"></activity>
+        <activity android:name=".user.order.AllOrderActivity" />
+        <activity android:name=".user.income.WithdrawalActivity" />
+        <activity android:name=".user.income.IncomeViewActivity"></activity>
     </application>
 
 </manifest>

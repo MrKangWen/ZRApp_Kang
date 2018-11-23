@@ -13,6 +13,7 @@
         <attr name="selectedColor" format="color" />
         <attr name="pressedColor" format="color" />
         <attr name="enabledColor" format="color" />
+        <attr name="strokeColor" format="color" />
         <attr name="radiu" format="float" />
     </declare-styleable>
 </resources>

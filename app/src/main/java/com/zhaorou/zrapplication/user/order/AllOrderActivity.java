@@ -21,6 +21,7 @@ public class AllOrderActivity extends BaseActivity {
         setContentView(R.layout.activity_all_order);
 
 
+        setTitle("所有订单");
         //  不传获取全部、 3：订单结算，12：订单付款， 13：订单失效，14：订单成功
 
         List<Fragment> listFragment = new ArrayList<>();
@@ -28,7 +29,7 @@ public class AllOrderActivity extends BaseActivity {
         listFragment.add(OrderFragment.newInstance("3"));
         listFragment.add(OrderFragment.newInstance("13"));
         List<String> listTitle = new ArrayList<>();
-        listTitle.add("所以订单");
+        listTitle.add("所有订单");
         listTitle.add("有效订单");
         listTitle.add("失效订单");
         TabLayoutPagerAdapter tabLayoutPagerAdapter = new TabLayoutPagerAdapter(getSupportFragmentManager(), listFragment, listTitle);

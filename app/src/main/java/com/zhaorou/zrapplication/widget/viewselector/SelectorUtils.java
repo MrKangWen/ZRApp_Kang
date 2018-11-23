@@ -35,11 +35,14 @@ public class SelectorUtils {
         //enable false
         int enabledColor = typedArray.getColor(R.styleable.button_selector_enabledColor, context.getResources().getColor(R.color.color_btn_enable_false));
 
+        int strokeColor = typedArray.getColor(R.styleable.button_selector_strokeColor, 0);
+
         float r = typedArray.getFloat(R.styleable.button_selector_radiu, 6);
+
         typedArray.recycle();
 
 
-        setBackground(context,view, selectedColor, pressedColor, enabledColor, r);
+        setBackground(context, view, selectedColor, pressedColor, enabledColor, r,strokeColor);
     }
 
     public static void setBackground(Context context, View view, int selectedColor, float radius) {
@@ -67,7 +70,12 @@ public class SelectorUtils {
         view.setBackgroundDrawable(drawable);
     }
 
-    public static void setBackground(Context context,View view, int selectedColor, int pressedColor, int enabledColor, float radius) {
+    public static void setBackground(Context context, View view, int selectedColor, int pressedColor, int enabledColor, float radius) {
+
+        setBackground(context, view, selectedColor, pressedColor, enabledColor, radius, 0);
+    }
+
+    public static void setBackground(Context context, View view, int selectedColor, int pressedColor, int enabledColor, float radius, int strokeColor) {
 
         radius = dip2px(context, radius);
         StateListDrawable drawable = new StateListDrawable();
@@ -79,6 +87,13 @@ public class SelectorUtils {
         pressedBg.setCornerRadius(radius);
         enabledBg.setCornerRadius(radius);
 
+        if (strokeColor != 0) {
+            selectedBg.setStroke(2, strokeColor);
+            pressedBg.setStroke(2, strokeColor);
+            enabledBg.setStroke(2, strokeColor);
+        }
+
+
         selectedBg.setColor(selectedColor);
         pressedBg.setColor(pressedColor);
         enabledBg.setColor(enabledColor);
@@ -88,6 +103,7 @@ public class SelectorUtils {
         drawable.addState(new int[]{android.R.attr.state_pressed}, pressedBg);
         drawable.addState(new int[]{android.R.attr.state_enabled}, selectedBg);
         drawable.addState(new int[]{}, enabledBg);
+
 
         view.setBackgroundDrawable(drawable);
     }

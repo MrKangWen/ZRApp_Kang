@@ -65,16 +65,22 @@ public class OrderFragment extends BaseListBindDataFragment<OrderListModel, Orde
         holder.setText(R.id.orderTvYGPrice, t.getPub_share_pre_fee());
         holder.setText(R.id.orderTvTC, t.getZr_sub_rate());
 
+        //结算
+        holder.setText(R.id.orderTvTotalPrice, t.getAlipay_total_price());
+        //结算 预估
+        holder.setText(R.id.orderTvCommission, t.getCommission());
+   //     holder.setText(R.id.orderTvTotalPrice, t.getAlipay_total_price());
         //   t.getTk_status();
 
         holder.setText(R.id.orderTvCreateTime, t.getCreate_time() + " 创建");
         holder.setText(R.id.orderTvOrderCreateTime, t.getOrder_create_time() + " 结算");
 
+
         int radius = 20;
         TextViewSelector status = holder.getView(R.id.orderTvStatus);
 
 
-        switch (t.getTk_status()){
+        switch (t.getTk_status()) {
 
             case 3:
                 status.setText("已结算");
@@ -93,11 +99,11 @@ public class OrderFragment extends BaseListBindDataFragment<OrderListModel, Orde
                 status.setText("已成功");
                 status.setBackgroundColor(getContext(), getResources().getColor(R.color.colorGreen_04be02), radius);
                 break;
-                default:
+            default:
 
-                    status.setText("已成功");
-                    status.setBackgroundColor(getContext(), getResources().getColor(R.color.colorGreen_04be02), radius);
-                    break;
+                status.setText("已成功");
+                status.setBackgroundColor(getContext(), getResources().getColor(R.color.colorGreen_04be02), radius);
+                break;
 
 
         }
