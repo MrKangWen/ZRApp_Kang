@@ -85,6 +85,8 @@
     </LinearLayout>
 
     <LinearLayout
+
+        android:id="@+id/settingsLlDiyText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -92,10 +94,10 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:visibility="gone">
+        android:paddingRight="16dp">
 
         <TextView
+
             android:id="@+id/settingsTvDiyText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -108,10 +110,10 @@
             android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/settingsIvDiyText"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/icon_toggle_off" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_next" />
     </LinearLayout>
 
     <LinearLayout
@@ -141,6 +143,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/icon_next" />
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/activity_settings_btn_logout"

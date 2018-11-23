@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zhaorou.zrapplication.BuildConfig;
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseActivity;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
@@ -57,6 +58,16 @@ public class LoginByAccountActivity extends BaseActivity {
         ButterKnife.bind(this);
         mLoadingDialog = new LoadingDialog(this);
         initTitleBar();
+
+        if(BuildConfig.DEBUG){
+
+            findViewById(R.id.loginIvLogo).setOnClickListener(v -> {
+                mPhoneEt.setText("13877799665");
+                mPasswordEt.setText("a123456");
+
+            });
+        }
+
     }
 
 

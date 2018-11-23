@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public abstract class BaseFragment extends Fragment implements HttpDialogLoading
     protected Map<String, Object> getTokenMap() {
 
         String token = SPreferenceUtil.getString(getContext(), ZRDConstants.SPreferenceKey.SP_LOGIN_TOKEN, "");
+
+        Log.d("mytest","token:"+token);
         Map<String, Object> map = new HashMap<>(2);
         map.put("token", token);
         return map;

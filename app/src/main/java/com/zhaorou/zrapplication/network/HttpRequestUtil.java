@@ -4,7 +4,9 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
 
 import com.zhaorou.zrapplication.network.retrofit.IRetrofitService;
+import com.zhaorou.zrapplication.network.retrofit.ReceivedInterceptor;
 import com.zhaorou.zrapplication.network.retrofit.RetrofitClient;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,6 +19,7 @@ public class HttpRequestUtil {
             sRetrofit = new RetrofitClient.Builder()
                     .baseUrl(ZRDConstants.HttpUrls.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addInterceptor(new ReceivedInterceptor())
                     .addNetworkInterceptor(new StethoInterceptor())
                     .build();
         }

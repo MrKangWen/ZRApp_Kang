@@ -18,6 +18,9 @@ import java.net.URL;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class FileUtils {
     public static String IMAGE_NAME = "iv_share_";
@@ -61,27 +64,49 @@ public class FileUtils {
             success = true;
         } catch (Exception e) {
             e.printStackTrace();
+
+
         }
 
         if (success) {
+            Log.d("mytest", "create file success!");
             return file;
         } else {
+            Log.d("mytest", "create file fail!");
             return null;
         }
     }
 
+
+
     //创建本地保存路径
-    public static File createStableImageFile(File fileDir) throws IOException {
-        i++;
-        String imageFileName = IMAGE_NAME + i + ".jpg";
+    private static File createStableImageFile(File fileDir) throws IOException {
+/*        i++;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String dateString = formatter.format(Calendar.getInstance().getTime());
+        String imageFileName = dateString +".jpg";
         // File storageDir = fileDir;
-        File storageDir = new File(fileDir.getPath() + "/ZrApp/");
+        File storageDir = new File(fileDir.getPath() + "/Camera/");
         if (!storageDir.exists()) {
             boolean isSuccess = storageDir.mkdirs();
             Log.d("mytest", "isSuccess:" + isSuccess);
         }
         File image = new File(storageDir, imageFileName);
+        Log.d("mytest", "isSuccess getPath:" + image.getPath());*/
+
+
+        i++;
+        String imageFileName = IMAGE_NAME + i + ".jpg";
+        // File storageDir = fileDir;
+ /*       File storageDir = new File(fileDir.getPath() + "/ZrApp/");
+        if (!storageDir.exists()) {
+            boolean isSuccess = storageDir.mkdirs();
+            Log.d("mytest", "isSuccess:" + isSuccess);
+        }*/
+        File image = new File(fileDir, imageFileName);
         return image;
+
+
     }
 
     public static File compressImage(String imagePath, long compressKbSize) {

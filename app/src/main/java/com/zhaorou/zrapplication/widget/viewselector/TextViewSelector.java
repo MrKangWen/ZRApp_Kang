@@ -1,7 +1,7 @@
 package com.zhaorou.zrapplication.widget.viewselector;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 /**
@@ -10,19 +10,19 @@ import android.util.AttributeSet;
  * 按钮的圆度radius
  */
 
-public class ButtonSelector extends AppCompatButton {
-    public ButtonSelector(Context context) {
+public class TextViewSelector extends AppCompatTextView {
+    public TextViewSelector(Context context) {
         super(context);
     }
 
     private String TAG = this.getClass().getSimpleName();
 
-    public ButtonSelector(Context context, AttributeSet attrs) {
+    public TextViewSelector(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public ButtonSelector(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TextViewSelector(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -30,7 +30,8 @@ public class ButtonSelector extends AppCompatButton {
     private void init(Context context, AttributeSet attrs) {
         SelectorUtils.setBackground(context,attrs,this);
     }
+    public void setBackgroundColor(Context context,int color,float radius){
 
-
-
+        SelectorUtils.setBackground(context,this,color,radius);
+    }
 }

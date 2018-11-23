@@ -44,8 +44,7 @@ public class SettingsActivity extends BaseActivity {
     @BindView(R.id.activity_settings_btn_link_taoword)
     ImageView mBtnLinkTao;
 
-    @BindView(R.id.settingsIvDiyText)
-    ImageView mSettingsIvDiyText;
+
     @BindView(R.id.activity_settings_version_info_tv)
     TextView mVersionInfo;
 
@@ -68,6 +67,7 @@ public class SettingsActivity extends BaseActivity {
         String versionName = ApplicationUtils.getVersionName();
         mVersionInfo.setText(versionName);
 
+/*
         mIsDiyText = SPreferenceUtil.getBoolean(SettingsActivity.this, ZRDConstants.SPreferenceKey.SP_DIY_TEXT, false);
         if (mIsDiyText) {
             mSettingsIvDiyText.setImageResource(R.drawable.icon_toggle_on);
@@ -85,6 +85,7 @@ public class SettingsActivity extends BaseActivity {
             }
 
         });
+*/
 
 
         findViewById(R.id.settingsTvDiyText).setOnClickListener(v -> {

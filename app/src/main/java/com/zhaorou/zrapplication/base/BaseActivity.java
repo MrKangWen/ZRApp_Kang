@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.zhaorou.zrapplication.R;
@@ -103,6 +104,8 @@ public class BaseActivity extends AppCompatActivity {
         try {
             PackageInfo packageInfo = getApplication().getPackageManager().getPackageInfo("com.tencent.mm", 128);
             //1340 6.7.2
+
+            Toast.makeText(this, "版本号：" + packageInfo.versionCode, Toast.LENGTH_LONG).show();
             int weChat6_7_2 = 1340;
             if (packageInfo.versionCode > weChat6_7_2) {
                 return true;

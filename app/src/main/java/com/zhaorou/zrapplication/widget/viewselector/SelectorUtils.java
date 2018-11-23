@@ -26,9 +26,9 @@ public class SelectorUtils {
         int selectedColor = typedArray.getColor(R.styleable.button_selector_selectedColor, context.getResources().getColor(R.color.color_style_btn_selected));
         int pressedColor;
         //点击
-        if(selectedColor==context.getResources().getColor(R.color.color_style_btn_selected)){
+        if (selectedColor == context.getResources().getColor(R.color.color_style_btn_selected)) {
             pressedColor = typedArray.getColor(R.styleable.button_selector_pressedColor, context.getResources().getColor(R.color.color_style_btn_normal));
-        }else {
+        } else {
             pressedColor = typedArray.getColor(R.styleable.button_selector_pressedColor, selectedColor);
         }
 
@@ -37,13 +37,39 @@ public class SelectorUtils {
 
         float r = typedArray.getFloat(R.styleable.button_selector_radiu, 6);
         typedArray.recycle();
-        float radius =dip2px(context, r);
 
 
-        setBackground(view, selectedColor, pressedColor, enabledColor, radius);
+        setBackground(context,view, selectedColor, pressedColor, enabledColor, r);
     }
 
-    public static void setBackground(View view, int selectedColor, int pressedColor, int enabledColor, float radius) {
+    public static void setBackground(Context context, View view, int selectedColor, float radius) {
+
+        radius = dip2px(context, radius);
+        StateListDrawable drawable = new StateListDrawable();
+        GradientDrawable selectedBg = new GradientDrawable();
+        GradientDrawable pressedBg = new GradientDrawable();
+        GradientDrawable enabledBg = new GradientDrawable();
+
+        selectedBg.setCornerRadius(radius);
+        pressedBg.setCornerRadius(radius);
+        enabledBg.setCornerRadius(radius);
+
+        selectedBg.setColor(selectedColor);
+        pressedBg.setColor(selectedColor);
+        enabledBg.setColor(selectedColor);
+
+
+        drawable.addState(new int[]{android.R.attr.state_selected}, selectedBg);
+        drawable.addState(new int[]{android.R.attr.state_pressed}, pressedBg);
+        drawable.addState(new int[]{android.R.attr.state_enabled}, selectedBg);
+        drawable.addState(new int[]{}, enabledBg);
+
+        view.setBackgroundDrawable(drawable);
+    }
+
+    public static void setBackground(Context context,View view, int selectedColor, int pressedColor, int enabledColor, float radius) {
+
+        radius = dip2px(context, radius);
         StateListDrawable drawable = new StateListDrawable();
         GradientDrawable selectedBg = new GradientDrawable();
         GradientDrawable pressedBg = new GradientDrawable();
@@ -58,7 +84,6 @@ public class SelectorUtils {
         enabledBg.setColor(enabledColor);
 
 
-
         drawable.addState(new int[]{android.R.attr.state_selected}, selectedBg);
         drawable.addState(new int[]{android.R.attr.state_pressed}, pressedBg);
         drawable.addState(new int[]{android.R.attr.state_enabled}, selectedBg);
@@ -66,6 +91,7 @@ public class SelectorUtils {
 
         view.setBackgroundDrawable(drawable);
     }
+
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */

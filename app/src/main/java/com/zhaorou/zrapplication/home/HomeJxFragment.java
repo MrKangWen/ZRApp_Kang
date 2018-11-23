@@ -40,6 +40,7 @@ import com.zhaorou.zrapplication.home.model.GoodsListModel;
 import com.zhaorou.zrapplication.home.model.JxListModel;
 import com.zhaorou.zrapplication.home.presenter.HomeFragmentPresenter;
 import com.zhaorou.zrapplication.login.LoginActivity;
+import com.zhaorou.zrapplication.settings.SettingsActivity;
 import com.zhaorou.zrapplication.utils.AccessibilityUtils;
 import com.zhaorou.zrapplication.utils.AssistantService;
 import com.zhaorou.zrapplication.utils.DisplayUtil;

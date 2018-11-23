@@ -55,6 +55,7 @@ public class BaseApplication extends Application {
     public static Application getApplication() {
         return mApplication;
     }
+
     /**
      * 是否 6.7.3 或者以上
      * 6.7.3不支持多图
@@ -63,7 +64,7 @@ public class BaseApplication extends Application {
      */
     public static boolean isWeChat6_7_3() {
         try {
-            PackageInfo packageInfo = getApplication().getPackageManager().getPackageInfo("com.tencent.mm", 128);
+            PackageInfo packageInfo = mApplication.getPackageManager().getPackageInfo("com.tencent.mm", 128);
             //1340 6.7.2
             int weChat6_7_2 = 1340;
             if (packageInfo.versionCode > weChat6_7_2) {
@@ -71,6 +72,7 @@ public class BaseApplication extends Application {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return true;
         }
         return false;
     }

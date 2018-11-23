@@ -1,12 +1,13 @@
 package com.zhaorou.zrapplication.utils;
 
 import android.accessibilityservice.AccessibilityService;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import java.util.List;
 
 public class AssistantService extends AccessibilityService {
 
@@ -15,6 +16,8 @@ public class AssistantService extends AccessibilityService {
      */
     public static boolean isAssistantRunning = false;
     public static String mMoments = "";
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         int eventType = event.getEventType();
@@ -34,21 +37,8 @@ public class AssistantService extends AccessibilityService {
                         return;
                     }
 
-                    List<AccessibilityNodeInfo> edt = null;
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        edt = rootNode.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/dp0");
-                    }
-                    if (edt.size() > 0) {
-
-                     //   ClipboardManager cm = (ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                        Bundle arguments = new Bundle();
-                        arguments.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,mMoments);
-                        AccessibilityNodeInfo edtView = edt.get(0);
-
-                        Log.d("AssistantService",mMoments);
-                        edtView.performAction(AccessibilityNodeInfo.FOCUS_INPUT);
-                        edtView.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
-                    }
+                    findEditText(rootNode);
+                    Log.d("AssistantService", "----------getViewIdResourceName：---");
 
                 }
 
@@ -56,6 +46,30 @@ public class AssistantService extends AccessibilityService {
             default:
                 break;
         }
+    }
+
+
+    private void findEditText(AccessibilityNodeInfo rootNode) {
+        for (int i = 0; i < rootNode.getChildCount(); i++) {
+
+            if ("android.widget.EditText".equals(rootNode.getChild(i).getClassName().toString())) {
+                //   ClipboardManager cm = (ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                Bundle arguments = new Bundle();
+                arguments.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, mMoments);
+                AccessibilityNodeInfo edtView = rootNode.getChild(i);
+                Log.d("AssistantService", "设置：---" + mMoments);
+                edtView.performAction(AccessibilityNodeInfo.FOCUS_INPUT);
+                edtView.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
+                break;
+            }
+
+            if (rootNode.getChild(i).getChildCount() != 0) {
+                findEditText(rootNode.getChild(i));
+            }
+
+        }
+
+
     }
 
     @Override

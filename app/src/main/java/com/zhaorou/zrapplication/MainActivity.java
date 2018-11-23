@@ -1,5 +1,6 @@
 package com.zhaorou.zrapplication;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,12 +18,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zhaorou.zrapplication.base.BaseActivity;
 import com.zhaorou.zrapplication.base.BaseApplication;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
 import com.zhaorou.zrapplication.eventbus.MessageEvent;
 import com.zhaorou.zrapplication.home.HomeFragment;
+import com.zhaorou.zrapplication.home.HomeJxFragment;
 import com.zhaorou.zrapplication.home.rd.RdFragment;
 import com.zhaorou.zrapplication.home.api.HomeApi;
 import com.zhaorou.zrapplication.home.model.AppUpdateModel;
@@ -51,11 +55,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener , EasyPermissions.PermissionCallbacks{
 
     @BindView(R.id.activity_main_viewpager)
     ViewPager mViewPager;
@@ -110,7 +115,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         getUserInfo();
 
 
-
+        String[] permissons = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        boolean hasPermissions = EasyPermissions.hasPermissions(getApplicationContext(), permissons);
+        if (!hasPermissions) {
+            EasyPermissions.requestPermissions(this, "需要读取储存权限", 0, permissons);
+        }
         Log.d("mytest","isWeChat6_7_3:"+isWeChat6_7_3());
 
     }
@@ -196,6 +205,21 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     }
 
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        Toast.makeText(this, "拒绝权限将无法正常使用", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
 
     private class VPAdapter extends FragmentPagerAdapter {
 

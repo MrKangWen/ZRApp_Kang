@@ -23,6 +23,7 @@ import com.zhaorou.zrapplication.settings.SettingsActivity;
 import com.zhaorou.zrapplication.user.model.UserInfoModel;
 import com.zhaorou.zrapplication.user.model.UserMessageEvent;
 import com.zhaorou.zrapplication.user.msg.MsgActivity;
+import com.zhaorou.zrapplication.user.order.AllOrderActivity;
 import com.zhaorou.zrapplication.user.presenter.UserFragmentPresenter;
 import com.zhaorou.zrapplication.utils.SPreferenceUtil;
 
@@ -84,22 +85,23 @@ public class UserFragment extends Fragment implements IUserFragmentView {
         });
 
 
-        mView.findViewById(R.id.userIvMsg).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String token = SPreferenceUtil.getString(getContext(), ZRDConstants.SPreferenceKey.SP_LOGIN_TOKEN, "");
-                if (TextUtils.isEmpty(token)) {
+        mView.findViewById(R.id.userIvMsg).setOnClickListener(v -> {
+            String token = SPreferenceUtil.getString(getContext(), ZRDConstants.SPreferenceKey.SP_LOGIN_TOKEN, "");
+            if (TextUtils.isEmpty(token)) {
 
-                    toLogin();
+                toLogin();
 
-                } else {
-                    Intent intent = new Intent(getActivity(), MsgActivity.class);
-                    startActivity(intent);
-                }
-
+            } else {
+                Intent intent = new Intent(getActivity(), MsgActivity.class);
+                startActivity(intent);
             }
-        });
 
+        });
+        mView.findViewById(R.id.userLLAllOrder).setOnClickListener(v -> {
+
+            startActivity(new Intent(getActivity(), AllOrderActivity.class));
+
+        });
 
         return mView;
     }
