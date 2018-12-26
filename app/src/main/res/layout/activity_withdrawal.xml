@@ -4,37 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     tools:context=".user.income.WithdrawalActivity">
 
     <include layout="@layout/layout_title_base_bar" />
 
     <TextView
+        android:id="@+id/withdrawalTvMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="15dp"
         android:text="余额：￥ 6999.00"
-        android:textColor="@color/colorBlack_333333" />
+        android:textColor="@color/colorBlack_333333"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="20dp"
         android:text="注意事项：每月提现上月收入"
         android:textColor="@color/colorGray_999999"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:visibility="gone" />
 
     <com.zhaorou.zrapplication.widget.viewselector.TextViewSelector
+        android:id="@+id/withdrawalTvSubmit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_margin="15dp"
+        android:layout_margin="20dp"
         android:gravity="center"
         android:text="提现"
-        android:textColor="@color/colorGray_999999"
-        app:radiu="20"
+        android:textColor="@color/colorBlack_333333"
+        app:radiu="6"
         app:selectedColor="@color/colorWhite"
-        app:strokeColor="@color/colorGray_999999" />
+        app:strokeColor="@color/colorPrimary" />
 
 
 </LinearLayout>

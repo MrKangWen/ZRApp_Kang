@@ -36,7 +36,13 @@ public abstract class AbsZCallback<T extends BaseModel> implements Callback<T> {
        if (response.body().getCode() == HTTP_STATUS_SUCCESS) {
             onSuccess(call, response);
         } else {
-            Throwable throwable = new Throwable("发生异常:" + response.body().getCode());
+           Throwable throwable;
+            if(response.body().getMsg()==null){
+                throwable = new Throwable("发生异常:" + response.body().getCode());
+            }else {
+                throwable = new Throwable( response.body().getMsg());
+            }
+
             onFail(call, throwable);
         }
 

@@ -7,17 +7,22 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseActivity;
+import com.zhaorou.zrapplication.base.BaseApplication;
+import com.zhaorou.zrapplication.base.BaseModel;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
 import com.zhaorou.zrapplication.home.dialog.LoadingDialog;
 import com.zhaorou.zrapplication.login.LoginActivity;
 import com.zhaorou.zrapplication.login.LoginByAccountActivity;
 import com.zhaorou.zrapplication.network.HttpRequestUtil;
+import com.zhaorou.zrapplication.network.retrofit.AbsZCallback;
+import com.zhaorou.zrapplication.user.api.UserApi;
 import com.zhaorou.zrapplication.user.model.UserMessageEvent;
 import com.zhaorou.zrapplication.utils.ApplicationUtils;
 import com.zhaorou.zrapplication.utils.SPreferenceUtil;
@@ -98,18 +103,55 @@ public class SettingsActivity extends BaseActivity {
     private void showDiyDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("自定义文案");
+        //builder.setTitle("自定义文案");
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_diy_text, null);
+
+        EditText editText = view.findViewById(R.id.edtText);
 
         view.findViewById(R.id.diyTextBtnSubmit).setOnClickListener(v -> {
             if (mAlertDialog != null) {
                 mAlertDialog.dismiss();
             }
+
+            postDiyTips(editText.getText().toString());
+
         });
         builder.setView(view);
         mAlertDialog = builder.show();
 
+        //pop_end
+
     }
+
+
+    private void postDiyTips(String tips) {
+
+   /*     if (TextUtils.isEmpty(tips)) {
+            return;
+        }*/
+
+        Map<String, Object> map = new HashMap<>(2);
+
+        map.put("token", getToken());
+        map.put("pop_end", tips);
+
+        HttpRequestUtil.getRetrofitService(UserApi.class).postDiyText(map).enqueue(new AbsZCallback<BaseModel>() {
+            @Override
+            public void onSuccess(Call<BaseModel> call, Response<BaseModel> response) {
+
+                showToast("成功设置！");
+
+                BaseApplication.getApplication().setDiyTips(tips);
+            }
+
+            @Override
+            public void onFail(Call<BaseModel> call, Throwable t) {
+                showToast("设置失败！");
+            }
+        });
+
+    }
+
 
     @OnClick({R.id.activity_settings_layout_title_left_btn_rl, R.id.activity_settings_btn_link_taoword,
             R.id.activity_settings_version_info_ll, R.id.activity_settings_btn_logout})
@@ -176,18 +218,15 @@ public class SettingsActivity extends BaseActivity {
                 AlertDialog alertDialog = new AlertDialog.Builder(SettingsActivity.this)
                         .setMessage("是否退出当前账号？")
                         .setNegativeButton("取消", null)
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                        .setPositiveButton("确定", (dialog, which) -> {
 
-                                EventBus.getDefault().post(new UserMessageEvent("-1"));
+                            EventBus.getDefault().post(new UserMessageEvent("-1"));
 
-                                int sequence = SPreferenceUtil.getInt(getApplicationContext(), ZRDConstants.SPreferenceKey.SP_PUSH_ALIAS, 0);
-                                JPushInterface.deleteAlias(getApplicationContext(), sequence);
-                                SPreferenceUtil.put(SettingsActivity.this, ZRDConstants.SPreferenceKey.SP_LOGIN_TOKEN, "");
-                                Toast.makeText(SettingsActivity.this, "已退出登录", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
+                            int sequence = SPreferenceUtil.getInt(getApplicationContext(), ZRDConstants.SPreferenceKey.SP_PUSH_ALIAS, 0);
+                            JPushInterface.deleteAlias(getApplicationContext(), sequence);
+                            SPreferenceUtil.put(SettingsActivity.this, ZRDConstants.SPreferenceKey.SP_LOGIN_TOKEN, "");
+                            Toast.makeText(SettingsActivity.this, "已退出登录", Toast.LENGTH_SHORT).show();
+                            finish();
                         }).create();
                 alertDialog.show();
 

@@ -115,4 +115,8 @@ public class BaseActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    protected void showToast(String tips) {
+        Toast.makeText(getApplicationContext(), tips, Toast.LENGTH_LONG).show();
+    }
 }

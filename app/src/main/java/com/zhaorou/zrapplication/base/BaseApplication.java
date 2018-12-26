@@ -2,6 +2,7 @@ package com.zhaorou.zrapplication.base;
 
 import android.app.Application;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.StrictMode;
 import android.text.TextUtils;
@@ -12,14 +13,13 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
 import com.zhaorou.zrapplication.network.HttpRequestUtil;
 import com.zhaorou.zrapplication.utils.ApplicationUtils;
-import com.zhaorou.zrapplication.utils.SPreferenceUtil;
 
 import cn.jpush.android.api.JPushInterface;
 
 public class BaseApplication extends Application {
 
     protected static IWXAPI mWxapi;
-    protected static Application mApplication;
+    protected static BaseApplication mApplication;
 
     @Override
     public void onCreate() {
@@ -41,6 +41,21 @@ public class BaseApplication extends Application {
 
     }
 
+    //文案尾巴
+    private String diyTips;
+
+    public void setDiyTips(String diyTips) {
+        this.diyTips = diyTips;
+    }
+
+    public String getDiyTips() {
+        if (TextUtils.isEmpty(diyTips)) {
+            return "";
+        }
+        return diyTips;
+    }
+
+
     private void initWXAPI() {
         mWxapi = WXAPIFactory.createWXAPI(this, ZRDConstants.AppIds.WX_APP_ID, true);
         mWxapi.registerApp(ZRDConstants.AppIds.WX_APP_ID);
@@ -52,7 +67,7 @@ public class BaseApplication extends Application {
         return mWxapi;
     }
 
-    public static Application getApplication() {
+    public static BaseApplication getApplication() {
         return mApplication;
     }
 
@@ -64,7 +79,9 @@ public class BaseApplication extends Application {
      */
     public static boolean isWeChat6_7_3() {
         try {
+
             PackageInfo packageInfo = mApplication.getPackageManager().getPackageInfo("com.tencent.mm", 128);
+
             //1340 6.7.2
             int weChat6_7_2 = 1340;
             if (packageInfo.versionCode > weChat6_7_2) {

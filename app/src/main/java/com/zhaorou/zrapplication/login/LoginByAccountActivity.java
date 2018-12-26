@@ -58,10 +58,14 @@ public class LoginByAccountActivity extends BaseActivity {
         ButterKnife.bind(this);
         mLoadingDialog = new LoadingDialog(this);
         initTitleBar();
+        ImageView loginIvLogo = findViewById(R.id.loginIvLogo);
 
-        if(BuildConfig.DEBUG){
+        if (!BuildConfig.isRd) {
+            loginIvLogo.setImageResource(R.drawable.ic_zhuanquan);
+        }
 
-            findViewById(R.id.loginIvLogo).setOnClickListener(v -> {
+        if (BuildConfig.DEBUG) {
+            loginIvLogo.setOnClickListener(v -> {
                 mPhoneEt.setText("13877799665");
                 mPasswordEt.setText("a123456");
 
@@ -118,7 +122,7 @@ public class LoginByAccountActivity extends BaseActivity {
                                 String token = wxUserInfoModel.getData().getToken();
 
                                 String alias = "zhaoroudan" + wxUserInfoModel.getData().getUser().getId();
-                                Log.d("mytest", alias);
+                             //   Log.d("mytest", alias);
                                 int sequence = (int) Calendar.getInstance().getTimeInMillis();
                                 JPushInterface.setAlias(LoginByAccountActivity.this, sequence, alias.trim());
                                 SPreferenceUtil.put(LoginByAccountActivity.this, ZRDConstants.SPreferenceKey.SP_PUSH_ALIAS, sequence);

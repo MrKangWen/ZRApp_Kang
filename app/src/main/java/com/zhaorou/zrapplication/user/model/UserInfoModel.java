@@ -4,13 +4,16 @@ import java.util.List;
 
 public class UserInfoModel {
 
+
     /**
-     * data : {"user":{"id":7,"openid":"onW_y1FMnFWG3xB3RiAPoEXiDuZU","subscribe":null,"nickname":"坤","sex":1,"city":"厦门","country":"中国","province":"福建","language":"zh_CN","headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJDLicbdiao8d0jicFmY4o2UHiawmXZU54KUJf3a2nZyFoscjobkCNk0zDNnXIIPyqbOuGsq3Jc9gQLLQ/132","subscribe_time":null,"unionid":"oqR1C1iKMB0eks1DVTJcfIe6A-9Y","privilege":"","remark":null,"groupid":null,"tagid_list":null,"subscribe_scene":null,"qr_scene":null,"qr_scene_str":null,"create_time":"2018-07-12 20:11:23","pid":"mm_15924044_13620115_54418631","adopt_friendpop_num":0,"total_friendpop_num":0,"add_goods_num":0,"password":null,"telephone":null,"score":0,"tao_session":"70000100e089719266f8149ef40decf8d332df80372d27a61729f031d6136b0ad449359387898871","tkl_type":"1","is_delete":{"type":"Buffer","data":[0]}}}
+     * data : {"user":{"id":8,"parent_unionid":"0","openid":"onW_y1HkMejN7cvQjasd44vnw88k","unionid":"oqR1C1j8K1rjF5qE_Uj0QA7xVRE4","subscribe":null,"nickname":"无理科","sex":1,"city":"厦门","country":"中国","province":"福建","language":"zh_CN","headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLib0bejkecMx4T2jt15wQStw2TtSLlq89SL3DfsqJ1MG5tMSVP2ibDViaib7sqy6MMWZr9gUXFiaUiciaxg/132","subscribe_time":null,"privilege":"","remark":null,"groupid":null,"tagid_list":null,"subscribe_scene":null,"withdraw_money":0,"create_time":"2018-07-13 21:22:16","pid":"mm_51060333_22584073_74748353","adopt_friendpop_num":1,"total_friendpop_num":24,"add_goods_num":12,"password":"a123456","telephone":"13877799665","score":6400,"tao_session":"70002100b0051ef99ae644996938ed8bec6d8c6d503b55478aa212d3bed4a8d508d7185415365139","tao_session_valid_time":null,"tkl_type":"1","is_delete":{"type":"Buffer","data":[0]},"rate":1,"unread_msg_count":14,"withdraw_apply":0}}
      * code : 200
+     * msg : success
      */
 
     private DataBean data;
     private int code;
+    private String msg;
 
     public DataBean getData() {
         return data;
@@ -28,9 +31,17 @@ public class UserInfoModel {
         this.code = code;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     public static class DataBean {
         /**
-         * user : {"id":7,"openid":"onW_y1FMnFWG3xB3RiAPoEXiDuZU","subscribe":null,"nickname":"坤","sex":1,"city":"厦门","country":"中国","province":"福建","language":"zh_CN","headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJDLicbdiao8d0jicFmY4o2UHiawmXZU54KUJf3a2nZyFoscjobkCNk0zDNnXIIPyqbOuGsq3Jc9gQLLQ/132","subscribe_time":null,"unionid":"oqR1C1iKMB0eks1DVTJcfIe6A-9Y","privilege":"","remark":null,"groupid":null,"tagid_list":null,"subscribe_scene":null,"qr_scene":null,"qr_scene_str":null,"create_time":"2018-07-12 20:11:23","pid":"mm_15924044_13620115_54418631","adopt_friendpop_num":0,"total_friendpop_num":0,"add_goods_num":0,"password":null,"telephone":null,"score":0,"tao_session":"70000100e089719266f8149ef40decf8d332df80372d27a61729f031d6136b0ad449359387898871","tkl_type":"1","is_delete":{"type":"Buffer","data":[0]}}
+         * user : {"id":8,"parent_unionid":"0","openid":"onW_y1HkMejN7cvQjasd44vnw88k","unionid":"oqR1C1j8K1rjF5qE_Uj0QA7xVRE4","subscribe":null,"nickname":"无理科","sex":1,"city":"厦门","country":"中国","province":"福建","language":"zh_CN","headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLib0bejkecMx4T2jt15wQStw2TtSLlq89SL3DfsqJ1MG5tMSVP2ibDViaib7sqy6MMWZr9gUXFiaUiciaxg/132","subscribe_time":null,"privilege":"","remark":null,"groupid":null,"tagid_list":null,"subscribe_scene":null,"withdraw_money":0,"create_time":"2018-07-13 21:22:16","pid":"mm_51060333_22584073_74748353","adopt_friendpop_num":1,"total_friendpop_num":24,"add_goods_num":12,"password":"a123456","telephone":"13877799665","score":6400,"tao_session":"70002100b0051ef99ae644996938ed8bec6d8c6d503b55478aa212d3bed4a8d508d7185415365139","tao_session_valid_time":null,"tkl_type":"1","is_delete":{"type":"Buffer","data":[0]},"rate":1,"unread_msg_count":14,"withdraw_apply":0}
          */
 
         private UserBean user;
@@ -45,40 +56,46 @@ public class UserInfoModel {
 
         public static class UserBean {
             /**
-             * id : 7
-             * openid : onW_y1FMnFWG3xB3RiAPoEXiDuZU
+             * id : 8
+             * parent_unionid : 0
+             * openid : onW_y1HkMejN7cvQjasd44vnw88k
+             * unionid : oqR1C1j8K1rjF5qE_Uj0QA7xVRE4
              * subscribe : null
-             * nickname : 坤
+             * nickname : 无理科
              * sex : 1
              * city : 厦门
              * country : 中国
              * province : 福建
              * language : zh_CN
-             * headimgurl : http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJDLicbdiao8d0jicFmY4o2UHiawmXZU54KUJf3a2nZyFoscjobkCNk0zDNnXIIPyqbOuGsq3Jc9gQLLQ/132
+             * headimgurl : http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLib0bejkecMx4T2jt15wQStw2TtSLlq89SL3DfsqJ1MG5tMSVP2ibDViaib7sqy6MMWZr9gUXFiaUiciaxg/132
              * subscribe_time : null
-             * unionid : oqR1C1iKMB0eks1DVTJcfIe6A-9Y
              * privilege :
              * remark : null
              * groupid : null
              * tagid_list : null
              * subscribe_scene : null
-             * qr_scene : null
-             * qr_scene_str : null
-             * create_time : 2018-07-12 20:11:23
-             * pid : mm_15924044_13620115_54418631
-             * adopt_friendpop_num : 0
-             * total_friendpop_num : 0
-             * add_goods_num : 0
-             * password : null
-             * telephone : null
-             * score : 0
-             * tao_session : 70000100e089719266f8149ef40decf8d332df80372d27a61729f031d6136b0ad449359387898871
+             * withdraw_money : 0
+             * create_time : 2018-07-13 21:22:16
+             * pid : mm_51060333_22584073_74748353
+             * adopt_friendpop_num : 1
+             * total_friendpop_num : 24
+             * add_goods_num : 12
+             * password : a123456
+             * telephone : 13877799665
+             * score : 6400
+             * tao_session : 70002100b0051ef99ae644996938ed8bec6d8c6d503b55478aa212d3bed4a8d508d7185415365139
+             * tao_session_valid_time : null
              * tkl_type : 1
              * is_delete : {"type":"Buffer","data":[0]}
+             * rate : 1
+             * unread_msg_count : 14
+             * withdraw_apply : 0
              */
 
             private int id;
+            private String parent_unionid;
             private String openid;
+            private String unionid;
             private Object subscribe;
             private String nickname;
             private int sex;
@@ -88,46 +105,38 @@ public class UserInfoModel {
             private String language;
             private String headimgurl;
             private Object subscribe_time;
-            private String unionid;
             private String privilege;
             private Object remark;
             private Object groupid;
             private Object tagid_list;
             private Object subscribe_scene;
-            private Object qr_scene;
-            private Object qr_scene_str;
+            private String withdraw_money;
             private String create_time;
             private String pid;
             private int adopt_friendpop_num;
             private int total_friendpop_num;
             private int add_goods_num;
-            private Object password;
-            private Object telephone;
+            private String password;
+            private String telephone;
             private int score;
             private String tao_session;
-
+            private Object tao_session_valid_time;
             private String tkl_type;
             private IsDeleteBean is_delete;
-
-            public String getUnread_msg_count() {
-                return unread_msg_count;
-            }
-
-            public void setUnread_msg_count(String unread_msg_count) {
-                this.unread_msg_count = unread_msg_count;
-            }
-
+            private int rate;
             private String unread_msg_count;
+            private int withdraw_apply;
 
-            public String getTao_session_valid_time() {
-                return tao_session_valid_time;
+            public String getPop_end() {
+                return pop_end;
             }
 
-            public void setTao_session_valid_time(String tao_session_valid_time) {
-                this.tao_session_valid_time = tao_session_valid_time;
+            public void setPop_end(String pop_end) {
+                this.pop_end = pop_end;
             }
 
-            private String tao_session_valid_time;
+            private String pop_end;
+
             public int getId() {
                 return id;
             }
@@ -136,12 +145,28 @@ public class UserInfoModel {
                 this.id = id;
             }
 
+            public String getParent_unionid() {
+                return parent_unionid;
+            }
+
+            public void setParent_unionid(String parent_unionid) {
+                this.parent_unionid = parent_unionid;
+            }
+
             public String getOpenid() {
                 return openid;
             }
 
             public void setOpenid(String openid) {
                 this.openid = openid;
+            }
+
+            public String getUnionid() {
+                return unionid;
+            }
+
+            public void setUnionid(String unionid) {
+                this.unionid = unionid;
             }
 
             public Object getSubscribe() {
@@ -216,14 +241,6 @@ public class UserInfoModel {
                 this.subscribe_time = subscribe_time;
             }
 
-            public String getUnionid() {
-                return unionid;
-            }
-
-            public void setUnionid(String unionid) {
-                this.unionid = unionid;
-            }
-
             public String getPrivilege() {
                 return privilege;
             }
@@ -264,20 +281,12 @@ public class UserInfoModel {
                 this.subscribe_scene = subscribe_scene;
             }
 
-            public Object getQr_scene() {
-                return qr_scene;
+            public String getWithdraw_money() {
+                return withdraw_money;
             }
 
-            public void setQr_scene(Object qr_scene) {
-                this.qr_scene = qr_scene;
-            }
-
-            public Object getQr_scene_str() {
-                return qr_scene_str;
-            }
-
-            public void setQr_scene_str(Object qr_scene_str) {
-                this.qr_scene_str = qr_scene_str;
+            public void setWithdraw_money(String withdraw_money) {
+                this.withdraw_money = withdraw_money;
             }
 
             public String getCreate_time() {
@@ -320,19 +329,19 @@ public class UserInfoModel {
                 this.add_goods_num = add_goods_num;
             }
 
-            public Object getPassword() {
+            public String getPassword() {
                 return password;
             }
 
-            public void setPassword(Object password) {
+            public void setPassword(String password) {
                 this.password = password;
             }
 
-            public Object getTelephone() {
+            public String getTelephone() {
                 return telephone;
             }
 
-            public void setTelephone(Object telephone) {
+            public void setTelephone(String telephone) {
                 this.telephone = telephone;
             }
 
@@ -352,6 +361,14 @@ public class UserInfoModel {
                 this.tao_session = tao_session;
             }
 
+            public Object getTao_session_valid_time() {
+                return tao_session_valid_time;
+            }
+
+            public void setTao_session_valid_time(Object tao_session_valid_time) {
+                this.tao_session_valid_time = tao_session_valid_time;
+            }
+
             public String getTkl_type() {
                 return tkl_type;
             }
@@ -366,6 +383,30 @@ public class UserInfoModel {
 
             public void setIs_delete(IsDeleteBean is_delete) {
                 this.is_delete = is_delete;
+            }
+
+            public int getRate() {
+                return rate;
+            }
+
+            public void setRate(int rate) {
+                this.rate = rate;
+            }
+
+            public String getUnread_msg_count() {
+                return unread_msg_count;
+            }
+
+            public void setUnread_msg_count(String unread_msg_count) {
+                this.unread_msg_count = unread_msg_count;
+            }
+
+            public int getWithdraw_apply() {
+                return withdraw_apply;
+            }
+
+            public void setWithdraw_apply(int withdraw_apply) {
+                this.withdraw_apply = withdraw_apply;
             }
 
             public static class IsDeleteBean {

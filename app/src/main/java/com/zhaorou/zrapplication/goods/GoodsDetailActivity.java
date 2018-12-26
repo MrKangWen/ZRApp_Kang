@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseActivity;
+import com.zhaorou.zrapplication.base.BaseApplication;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
 import com.zhaorou.zrapplication.home.IHomeFragmentView;
 import com.zhaorou.zrapplication.home.api.HomeApi;
@@ -401,6 +402,7 @@ public class GoodsDetailActivity extends BaseActivity implements IHomeFragmentVi
             mTaoword = content;
         }
 
+        mTaoword = mTaoword + "\n" + BaseApplication.getApplication().getDiyTips();
 
         ClipboardManager cm = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("taoword", mTaoword);

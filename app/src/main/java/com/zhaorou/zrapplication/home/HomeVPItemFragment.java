@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhaorou.zrapplication.R;
+import com.zhaorou.zrapplication.base.BaseApplication;
 import com.zhaorou.zrapplication.base.BaseFragment;
 import com.zhaorou.zrapplication.base.GlideApp;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
@@ -185,6 +186,7 @@ public class HomeVPItemFragment extends BaseFragment implements IHomeFragmentVie
             mTaoword = content;
         }
 
+        mTaoword = mTaoword + "\n" + BaseApplication.getApplication().getDiyTips();
 
         ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("taoword", mTaoword);
@@ -280,6 +282,7 @@ public class HomeVPItemFragment extends BaseFragment implements IHomeFragmentVie
             String str = tkl;
             taoword = taoword + "打开链接\n" + str;
         }
+    //    taoword = taoword + "\n" + BaseApplication.getApplication().getDiyTips();
         ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("tkl", taoword);
         cm.setPrimaryClip(clipData);

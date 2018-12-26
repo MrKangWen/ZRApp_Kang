@@ -18,11 +18,13 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/edtText"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_margin="30dp"
-                android:background="@android:color/white"
-                android:hint="请输入文案"
+                android:background="@drawable/bg_gray"
+                android:hint="请输入自定义文案"
+                android:padding="6dp"
                 android:textSize="14sp" />
 
 

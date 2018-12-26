@@ -60,7 +60,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener , EasyPermissions.PermissionCallbacks{
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, EasyPermissions.PermissionCallbacks {
 
     @BindView(R.id.activity_main_viewpager)
     ViewPager mViewPager;
@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         if (!hasPermissions) {
             EasyPermissions.requestPermissions(this, "需要读取储存权限", 0, permissons);
         }
-        Log.d("mytest","isWeChat6_7_3:"+isWeChat6_7_3());
+        //     Log.d("mytest","isWeChat6_7_3:"+isWeChat6_7_3());
 
     }
 
@@ -186,6 +186,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private void initViewPager() {
         FragmentManager fm = getSupportFragmentManager();
         mVPAdapter = new VPAdapter(fm);
+        mViewPager.setOffscreenPageLimit(2);
         mViewPager.setAdapter(mVPAdapter);
         mViewPager.addOnPageChangeListener(this);
     }

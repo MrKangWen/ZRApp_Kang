@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhaorou.zrapplication.R;
+import com.zhaorou.zrapplication.base.BaseApplication;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
 import com.zhaorou.zrapplication.goods.GoodsDetailActivity;
 import com.zhaorou.zrapplication.home.HomeJxFragment;
@@ -297,7 +298,7 @@ public class CommonFragment extends BaseListBindDataFragment<JxListModel, JxList
             mTaoword = content;
         }
 
-
+        mTaoword = mTaoword + "\n" + BaseApplication.getApplication().getDiyTips();
 
         ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("taoword", mTaoword);

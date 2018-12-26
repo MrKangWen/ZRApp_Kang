@@ -14,13 +14,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zhaorou.zrapplication.BuildConfig;
 import com.zhaorou.zrapplication.R;
+import com.zhaorou.zrapplication.base.BaseApplication;
 import com.zhaorou.zrapplication.base.GlideApp;
 import com.zhaorou.zrapplication.constants.ZRDConstants;
 import com.zhaorou.zrapplication.home.dialog.LoadingDialog;
 import com.zhaorou.zrapplication.login.LoginActivity;
 import com.zhaorou.zrapplication.settings.SettingsActivity;
 import com.zhaorou.zrapplication.user.income.IncomeViewActivity;
+import com.zhaorou.zrapplication.user.income.WithdrawalActivity;
 import com.zhaorou.zrapplication.user.model.UserInfoModel;
 import com.zhaorou.zrapplication.user.model.UserMessageEvent;
 import com.zhaorou.zrapplication.user.msg.MsgActivity;
@@ -76,13 +79,11 @@ public class UserFragment extends Fragment implements IUserFragmentView {
         mPresenter.attachView(this);
         mLoadingDialog = new LoadingDialog(getContext());
 
-        mView.findViewById(R.id.fragment_use_help_ll).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent webViewIntent = new Intent(getActivity(), WebViewActivity.class);
-                webViewIntent.putExtra("URL", "https://www.kancloud.cn/zhaoroudanapp/help/722292");
-                startActivity(webViewIntent);
-            }
+        View useHelpLl = mView.findViewById(R.id.fragment_use_help_ll);
+        useHelpLl.setOnClickListener(v -> {
+            Intent webViewIntent = new Intent(getActivity(), WebViewActivity.class);
+            webViewIntent.putExtra("URL", "https://www.kancloud.cn/zhaoroudanapp/help/722292");
+            startActivity(webViewIntent);
         });
 
 
@@ -98,11 +99,40 @@ public class UserFragment extends Fragment implements IUserFragmentView {
             }
 
         });
-        mView.findViewById(R.id.userLLAllOrder).setOnClickListener(v -> {
+        View userLLAllOrder = mView.findViewById(R.id.userLLAllOrder);
+        userLLAllOrder.setOnClickListener(v -> startActivity(new Intent(getActivity(), AllOrderActivity.class)));
+        View userLLWithdrawal = mView.findViewById(R.id.userLLWithdrawal);
+        userLLWithdrawal.setOnClickListener(v -> {
 
-            startActivity(new Intent(getActivity(), IncomeViewActivity.class));
+            if (mUserBean == null) {
+                return;
+            }
+            if (mUserBean.getWithdraw_apply() == 0) {
+
+                String money = mUserBean.getWithdraw_money();
+                Intent intent = new Intent(getActivity(), WithdrawalActivity.class);
+                intent.putExtra("MONEY", money);
+                startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), "不能再发起提现申请", Toast.LENGTH_SHORT).show();
+            }
 
         });
+
+        if (BuildConfig.isRd) {
+            userLLAllOrder.setVisibility(View.GONE);
+            userLLWithdrawal.setVisibility(View.GONE);
+        } else {
+
+            useHelpLl.setVisibility(View.GONE);
+            mView.findViewById(R.id.fragment_user_bind_pid_ll).setVisibility(View.GONE);
+            mView.findViewById(R.id.fragment_user_get_tao_session).setVisibility(View.GONE);
+
+            mUserMsgCountTv.setVisibility(View.GONE);
+            mView.findViewById(R.id.userIvMsg).setVisibility(View.GONE);
+
+        }
+
 
         return mView;
     }
@@ -218,12 +248,21 @@ public class UserFragment extends Fragment implements IUserFragmentView {
         }
     }
 
+    UserInfoModel.DataBean.UserBean mUserBean;
+
     private void setUserInfo(UserInfoModel.DataBean.UserBean userBean) {
+
+        if (userBean == null) {
+            return;
+        }
+
+        this.mUserBean = userBean;
+
         String nickname = userBean.getNickname();
         mNameTv.setText(nickname);
 
         mUserTValidDate.setVisibility(View.VISIBLE);
-        mUserTValidDate.setText("过期时间：" + userBean.getTao_session_valid_time());
+        mUserTValidDate.setText(String.format("过期时间：%s", userBean.getTao_session_valid_time()));
         String headimgurl = userBean.getHeadimgurl();
         GlideApp.with(this).load(headimgurl).circleCrop().into(mAvatarIv);
 
@@ -231,6 +270,12 @@ public class UserFragment extends Fragment implements IUserFragmentView {
         mScoreTv.setText("积分：" + score);
 
         mUserMsgCountTv.setText(userBean.getUnread_msg_count());
+
+        if (!TextUtils.isEmpty(userBean.getPop_end())) {
+            BaseApplication.getApplication().setDiyTips(userBean.getPop_end());
+        }
+
+
         EventBus.getDefault().post(new UserMessageEvent(userBean.getUnread_msg_count()));
 
     }

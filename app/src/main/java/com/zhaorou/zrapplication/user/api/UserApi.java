@@ -23,4 +23,19 @@ public interface UserApi {
     @FormUrlEncoded
     @POST("api/get_mine_order_list")
     Call<OrderListModel> getOrderList(@FieldMap Map<String, Object> params);
+
+
+    /**
+     * order list
+     */
+    @FormUrlEncoded
+    @POST("api/add_withdraw_record")
+    Call<BaseModel> userWithdrawal(@FieldMap Map<String, Object> params);
+
+    /**
+     * 自定义文案尾巴
+     */
+    @FormUrlEncoded
+    @POST("api/upd_userinfo")
+    Call<BaseModel> postDiyText(@FieldMap Map<String, Object> params);
 }
