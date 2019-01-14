@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.zhaorou.zhuanquanapp.BuildConfig;
 import com.zhaorou.zhuanquanapp.R;
 import com.zhaorou.zhuanquanapp.base.BaseFragment;
 import com.zhaorou.zhuanquanapp.base.GlideApp;
@@ -574,6 +575,7 @@ public class HomeVPItemFragment extends BaseFragment implements IHomeFragmentVie
             mPriceTv = itemView.findViewById(R.id.item_goods_list_price_tv);
             mPayNumberTv = itemView.findViewById(R.id.item_goods_list_pay_number_tv);
             mRateTv = itemView.findViewById(R.id.item_goods_list_rate_tv);
+
             mRemainderTv = itemView.findViewById(R.id.item_goods_list_remainder_tv);
             mBtnShareWXRl = itemView.findViewById(R.id.item_goods_list_btn_share_wx_rl);
             mBtnPerfectWXCircle = itemView.findViewById(R.id.item_goods_list_btn_perfect_wx_circle);

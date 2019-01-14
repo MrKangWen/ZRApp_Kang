@@ -242,7 +242,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     private void showAccessibility() {
         if (!AccessibilityUtils.isAccessibilitySettingsOn(AssistantService.class.getName(), this)) {
-            new AlertDialog.Builder(this).setMessage("打开【设置——>辅助功能/无障碍——>找肉单——>开启】开启分享朋友圈自动粘贴文字功能")
+
+
+            new AlertDialog.Builder(this).setMessage("打开【设置——>辅助功能/无障碍——>" + getString(R.string.app_name) + "——>开启】开启分享朋友圈自动粘贴文字功能")
                     .setNegativeButton("取消", null)
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
@@ -317,6 +319,13 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(UserMessageEvent messageEvent) {
+
+        if (!BuildConfig.isRd) {
+
+            mMainMsgTv.setVisibility(View.GONE);
+            return;
+        }
+
         if ("0".equals(messageEvent.getMessageCount()) || "-1".equals(messageEvent.getMessageCount())) {
             mMainMsgTv.setVisibility(View.GONE);
         } else {

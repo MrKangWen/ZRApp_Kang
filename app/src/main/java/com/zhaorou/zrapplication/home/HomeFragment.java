@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zhaorou.zrapplication.BuildConfig;
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseFragment;
 import com.zhaorou.zrapplication.home.dialog.LoadingDialog;
@@ -246,7 +247,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         for (int i = 0; i < mTabsTitleArray.length; i++) {
 
             if (i == 1) {
-                HomeJxFragment jxFragment=new HomeJxFragment();
+                HomeJxFragment jxFragment = new HomeJxFragment();
                 mFragmentList.add(jxFragment);
             } else {
                 HomeVPItemFragment homeVPItemFragment = new HomeVPItemFragment();
@@ -266,6 +267,13 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.setOffscreenPageLimit(2);
         mViewPager.addOnPageChangeListener(this);
+
+
+        if (!BuildConfig.isRd) {
+            TextView title_search_et = mView.findViewById(R.id.fragment_home_layout_title_search_et);
+            title_search_et.setHint("");
+        }
+
     }
 
     public static void startRefresh() {

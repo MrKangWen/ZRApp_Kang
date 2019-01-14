@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.zhaorou.zrapplication.BuildConfig;
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseActivity;
 import com.zhaorou.zrapplication.base.BaseApplication;
@@ -63,7 +64,13 @@ public class GoodsDetailActivity extends BaseActivity implements IHomeFragmentVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_detail);
         mPresenter.attachView(this);
-        setTitle("肉单详情");
+
+        if (BuildConfig.isRd) {
+            setTitle("肉单详情");
+        } else {
+            setTitle("直播详情");
+        }
+
         getData();
     }
 
@@ -188,8 +195,14 @@ public class GoodsDetailActivity extends BaseActivity implements IHomeFragmentVi
         TextView detailSalesTv = findViewById(R.id.detailSalesTv);
         detailSalesTv.setText("销量：" + detailModel.getSales());
 
+
+
+
         TextView detailExtractTv = findViewById(R.id.detailExtractTv);
         detailExtractTv.setText("佣金：" + detailModel.getRate() + "%");
+        if (!BuildConfig.isRd) {
+            detailExtractTv.setVisibility(View.GONE);
+        }
 
 
         TextView detail_perfect_wx_circle = findViewById(R.id.detail_perfect_wx_circle);
@@ -383,8 +396,6 @@ public class GoodsDetailActivity extends BaseActivity implements IHomeFragmentVi
                         price_after_coupons + "\n" +
                         "--------抢购方式--------" + "\n";
             }
-
-
 
 
             if (TextUtils.equals(tklType, "1")) {

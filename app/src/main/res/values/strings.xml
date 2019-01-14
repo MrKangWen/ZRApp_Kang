@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">找肉单</string>
-
+    <!--<string name="app_name">找肉单</string>-->
+    <string name="app_name">赚圈</string>
     <string-array name="fragment_home_tab">
         <item>实时排行</item>
         <item>精选</item>

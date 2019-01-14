@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zhaorou.zrapplication.BuildConfig;
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseActivity;
 import com.zhaorou.zrapplication.base.GlideApp;
@@ -522,6 +523,11 @@ public class CategoryActivity extends BaseActivity implements IHomeFragmentView 
             mPriceTv = itemView.findViewById(R.id.item_goods_list_price_tv);
             mPayNumberTv = itemView.findViewById(R.id.item_goods_list_pay_number_tv);
             mRateTv = itemView.findViewById(R.id.item_goods_list_rate_tv);
+
+            if (!BuildConfig.isRd) {
+                mRateTv.setVisibility(View.GONE);
+            }
+
             mRemainderTv = itemView.findViewById(R.id.item_goods_list_remainder_tv);
             mBtnShareWXRl = itemView.findViewById(R.id.item_goods_list_btn_share_wx_rl);
             mBtnPerfectWXCircle = itemView.findViewById(R.id.item_goods_list_btn_perfect_wx_circle);

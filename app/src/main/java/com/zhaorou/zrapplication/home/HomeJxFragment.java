@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zhaorou.zrapplication.BuildConfig;
 import com.zhaorou.zrapplication.R;
 import com.zhaorou.zrapplication.base.BaseApplication;
 import com.zhaorou.zrapplication.base.BaseFragment;
@@ -107,6 +108,13 @@ public class HomeJxFragment extends BaseFragment implements IHomeFragmentView, E
 
         mLoadingDialog = new LoadingDialog(getContext());
         initData();
+        mPresenter.getJxListData().observe(this, listBeans -> {
+            if (page == 1) {
+                mGoodsList.clear();
+            }
+            mGoodsList.addAll(listBeans);
+            mGoodsAdapter.notifyDataSetChanged();
+        });
         return mView;
     }
 
@@ -362,16 +370,7 @@ public class HomeJxFragment extends BaseFragment implements IHomeFragmentView, E
         params.put("flag", 1);
         params.put("keyword", "");
         params.put("page", page + "");
-        mPresenter.getJxListData().observe(this, new Observer<List<JxListModel.DataBean.ListBean>>() {
-            @Override
-            public void onChanged(@Nullable List<JxListModel.DataBean.ListBean> listBeans) {
-                if (page == 1) {
-                    mGoodsList.clear();
-                }
-                mGoodsList.addAll(listBeans);
-                mGoodsAdapter.notifyDataSetChanged();
-            }
-        });
+
         mPresenter.getJxListData(params);
     }
 
@@ -614,6 +613,10 @@ public class HomeJxFragment extends BaseFragment implements IHomeFragmentView, E
             mPriceTv = itemView.findViewById(R.id.item_goods_list_price_tv);
             mPayNumberTv = itemView.findViewById(R.id.item_goods_list_pay_number_tv);
             mRateTv = itemView.findViewById(R.id.item_goods_list_rate_tv);
+            if (!BuildConfig.isRd) {
+                mRateTv.setVisibility(View.GONE);
+            }
+
             mRemainderTv = itemView.findViewById(R.id.item_goods_list_remainder_tv);
             mBtnShareWXRl = itemView.findViewById(R.id.item_goods_list_btn_share_wx_rl);
             mBtnPerfectWXCircle = itemView.findViewById(R.id.item_goods_list_btn_perfect_wx_circle);

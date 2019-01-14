@@ -88,7 +88,7 @@
                 android:layout_marginTop="6dp"
                 android:orientation="horizontal">
 
-                <TextView
+          <!--      <TextView
                     android:id="@+id/item_goods_list_price_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                     android:gravity="center"
                     android:text="￥0.00"
                     android:textColor="@color/colorRed_e64340"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"/>-->
 
                 <TextView
                     android:id="@+id/item_goods_list_pay_number_tv"
@@ -123,6 +123,16 @@
                     android:layout_alignParentLeft="true"
                     android:gravity="center_vertical"
                     android:text="佣金：0.00%"
+                    android:visibility="gone"
+                    android:textColor="@color/colorRed_e64340"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/item_goods_list_price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="￥0.00"
                     android:textColor="@color/colorRed_e64340"
                     android:textSize="12sp"/>
 
