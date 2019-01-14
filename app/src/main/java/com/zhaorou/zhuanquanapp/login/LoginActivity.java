@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.zhaorou.zhuanquanapp.BuildConfig;
 import com.zhaorou.zhuanquanapp.R;
 import com.zhaorou.zhuanquanapp.base.BaseActivity;
 import com.zhaorou.zhuanquanapp.base.BaseApplication;
@@ -55,6 +56,12 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if (!BuildConfig.isRd) {
+            startActivity(new Intent(this, LoginByAccountActivity.class));
+            finish();
+        }
+
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         mLoadingDialog = new LoadingDialog(this);

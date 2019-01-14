@@ -122,6 +122,12 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         }
         //     Log.d("mytest","isWeChat6_7_3:"+isWeChat6_7_3());
 
+
+        if(!BuildConfig.isRd){
+            mTabRdTv.setText("直播");
+        }
+
+
     }
 
     @Override

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.zhaorou.zrapplication"
+        applicationId "com.zhaorou.zhuanquanapp"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 5
@@ -17,7 +17,7 @@ android {
         }
 
         manifestPlaceholders = [
-                FILE_PROVIDER: "com.zhaorou.zrapplication.fileprovider", //7.0文件适配
+                FILE_PROVIDER: applicationId+".fileprovider", //7.0文件适配
                 JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "7e6acf053c1329c3ea93a955", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.

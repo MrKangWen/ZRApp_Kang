@@ -133,6 +133,9 @@ public class UserFragment extends Fragment implements IUserFragmentView {
 
         }
 
+        if (!BuildConfig.isRd) {
+            mAvatarIv.setImageResource(R.mipmap.ic_launcher_zq);
+        }
 
         return mView;
     }
@@ -239,7 +242,12 @@ public class UserFragment extends Fragment implements IUserFragmentView {
         if (TextUtils.isEmpty(token)) {
             mUserMsgCountTv.setVisibility(View.GONE);
             mScoreTv.setText("积分：0");
-            GlideApp.with(this).load(R.mipmap.ic_launcher).circleCrop().into(mAvatarIv);
+            if(BuildConfig.isRd){
+                GlideApp.with(this).load(R.mipmap.ic_launcher).circleCrop().into(mAvatarIv);
+            }else {
+                GlideApp.with(this).load(R.mipmap.ic_launcher_zq).circleCrop().into(mAvatarIv);
+            }
+
             mNameTv.setText("点击登录/注册");
             mUserTValidDate.setVisibility(View.GONE);
 
