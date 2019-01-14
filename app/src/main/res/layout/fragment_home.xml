@@ -151,7 +151,7 @@
                             android:textColor="@color/colorGreen_04be02"/>
                     </LinearLayout>
 
-                    <com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView
+                    <com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView
                         android:id="@+id/fragment_home_class_list_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                         android:paddingLeft="4dp"
                         android:paddingRight="4dp">
 
-                    </com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView>
+                    </com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView>
                 </LinearLayout>
             </RelativeLayout>
         </FrameLayout>

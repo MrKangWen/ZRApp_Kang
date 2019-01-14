@@ -9,10 +9,10 @@
 
     <include layout="@layout/layout_activity_title"/>
 
-    <com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView
+    <com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView
         android:id="@+id/rv_album_list_activity_album_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView>
+    </com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView>
 </LinearLayout>

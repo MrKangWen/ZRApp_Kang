@@ -7,7 +7,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 5
-        versionName "1.5.0"
+        versionName "1.6.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -25,9 +25,10 @@ android {
     }
     signingConfigs {
         release {
+            // 除了路径不一致 ，其他都一直
             keyAlias 'key0'
             keyPassword '123456'
-            storeFile file('zrd_key_store.jks')
+            storeFile file('zq_key_store.jks')
             storePassword '123456'
         }
     }

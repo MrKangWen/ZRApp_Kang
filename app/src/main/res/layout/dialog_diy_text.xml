@@ -28,7 +28,7 @@
                 android:textSize="14sp" />
 
 
-            <com.zhaorou.zrapplication.widget.viewselector.ButtonSelector
+            <com.zhaorou.zhuanquanapp.widget.viewselector.ButtonSelector
                 android:id="@+id/diyTextBtnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

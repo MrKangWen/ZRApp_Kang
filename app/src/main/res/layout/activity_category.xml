@@ -61,11 +61,11 @@
             android:layout_height="1dp"
             android:background="@color/colorGray_F5F5F5"/>
 
-        <com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView
+        <com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView
             android:id="@+id/activity_category_goods_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView>
+        </com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView>
     </LinearLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

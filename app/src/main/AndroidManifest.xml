@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zhaorou.zrapplication">
+    package="com.zhaorou.zhuanquanapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -47,7 +47,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.zhaorou.zrapplication.fileprovider"
+            android:authorities="com.zhaorou.zhuanquanapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

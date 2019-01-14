@@ -98,13 +98,13 @@
 
                     </FrameLayout>
 
-                    <com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView
+                    <com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView
                         android:id="@+id/perfect_wx_circle_dialog_images_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp">
 
-                    </com.zhaorou.zrapplication.widget.recyclerview.CustomRecyclerView>
+                    </com.zhaorou.zhuanquanapp.widget.recyclerview.CustomRecyclerView>
                 </LinearLayout>
 
                 <LinearLayout

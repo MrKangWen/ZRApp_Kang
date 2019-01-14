@@ -32,7 +32,7 @@
             android:text="0.00"
             android:textColor="@color/colorWhite" />
 
-        <com.zhaorou.zrapplication.widget.viewselector.TextViewSelector
+        <com.zhaorou.zhuanquanapp.widget.viewselector.TextViewSelector
             android:id="@+id/incomeTvWithdrawal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

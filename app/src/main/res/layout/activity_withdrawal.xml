@@ -30,7 +30,7 @@
         android:textSize="12sp"
         android:visibility="gone" />
 
-    <com.zhaorou.zrapplication.widget.viewselector.TextViewSelector
+    <com.zhaorou.zhuanquanapp.widget.viewselector.TextViewSelector
         android:id="@+id/withdrawalTvSubmit"
         android:layout_width="match_parent"
         android:layout_height="40dp"

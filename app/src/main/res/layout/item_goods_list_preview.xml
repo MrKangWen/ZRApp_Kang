@@ -29,7 +29,7 @@
             android:padding="8dp">
 
 
-            <com.zhaorou.zrapplication.widget.view.ScrollTextView
+            <com.zhaorou.zhuanquanapp.widget.view.ScrollTextView
                 android:id="@+id/preview_title"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
